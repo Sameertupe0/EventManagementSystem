@@ -36,7 +36,7 @@ public class Main {
                     }
 
                 break;
-                case 4:
+                case 8:
                     System.exit(0);
                     break;
                 default:
