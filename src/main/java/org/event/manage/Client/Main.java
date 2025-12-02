@@ -1,5 +1,6 @@
 package org.event.manage.Client;
 import org.event.manage.Helper.AdminHelper;
+import org.event.manage.Helper.StudentHelper;
 import org.event.manage.Model.AdminLogin;
 import org.event.manage.Service.AdminLoginService;
 import org.event.manage.Service.AdminLoginServiceImpl;
@@ -13,11 +14,12 @@ public class Main {
         do{
             Scanner sc = new Scanner(System.in);
             System.out.println("1. Admin Login");
+            System.out.println("2. Student Login");
             System.out.println("Enter Your choice");
             int choice = sc.nextInt();
             switch (choice){
                 case 1:
-                    System.out.println("Enter your username and password");
+                    System.out.println("Enter your username and password for Admin");
                     sc.nextLine();
                     String uname = sc.nextLine();
                     String pass = sc.nextLine();
@@ -35,6 +37,23 @@ public class Main {
                         System.out.println("Invalid Login");
                     }
 
+                break;
+
+                case 2:
+                    sc.nextLine();
+                    System.out.println("Enter username and password for the student login");
+                    String suname = sc.nextLine();
+                    String spass = sc.nextLine();
+                    AdminLogin al1 = new AdminLogin();
+                    al1.setUsername(suname);
+                    al1.setPassword(spass);
+                    AdminLoginService adminLoginService = new AdminLoginServiceImpl();
+                    boolean b1 = adminLoginService.isStudentLogin(al1);
+                    if(b1){
+                        System.out.println("Student Login Successfully");
+                        System.out.println("******************Student Services are ***************************");
+                        StudentHelper.startWorking();
+                    }
                 break;
                 case 8:
                     System.exit(0);

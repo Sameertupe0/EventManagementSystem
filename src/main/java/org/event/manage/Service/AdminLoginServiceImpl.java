@@ -11,4 +11,9 @@ public class AdminLoginServiceImpl implements AdminLoginService{
     public boolean isAdminLogin(AdminLogin login) {
         return adrepo.isAdminLogin(login);
     }
+
+    @Override
+    public boolean isStudentLogin(AdminLogin login) {
+        return adrepo.isStudentLogin(login);
+    }
 }
