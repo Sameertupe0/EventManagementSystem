@@ -1,10 +1,16 @@
 package org.event.manage.Client;
 import org.event.manage.Helper.AdminHelper;
+import org.event.manage.Helper.RegHelper;
+
+import org.event.manage.Helper.ServiceHelper;
 import org.event.manage.Helper.StudentHelper;
 import org.event.manage.Model.AdminLogin;
+import org.event.manage.Model.EventModel;
 import org.event.manage.Service.AdminLoginService;
 import org.event.manage.Service.AdminLoginServiceImpl;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 
@@ -52,9 +58,16 @@ public class Main {
                     if(b1){
                         System.out.println("Student Login Successfully");
                         System.out.println("******************Student Services are ***************************");
-                        StudentHelper.startWorking();
+                        List<EventModel> list = ServiceHelper.eventService.ViewUpcomingEvent();
+                        System.out.println("******ALL the Upcoming Events Are**************");
+                        list.forEach(eventModel -> {
+                            System.out.println(eventModel.getEid()+" "+eventModel.getName()+" "+eventModel.getVenue()+" "+eventModel.getEdate()+"  "+eventModel.getCapacity());
+                        });
+                        RegHelper.startWorking();
                     }
                 break;
+
+
                 case 8:
                     System.exit(0);
                     break;

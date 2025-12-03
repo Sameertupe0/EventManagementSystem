@@ -27,7 +27,7 @@ public class EventRepoImpl extends DbInitialize implements EventRepo{
             stmt = con.prepareStatement("insert into event values('0',?,?,?,?)");
 
             stmt.setString(1,eventModel.getName());
-            stmt.setDate(2, java.sql.Date.valueOf(eventModel.getEdate()));
+            stmt.setDate(2, Date.valueOf(eventModel.getEdate()));
             stmt.setString(3,eventModel.getVenue());
             stmt.setInt(4,eventModel.getCapacity());
 
@@ -181,5 +181,47 @@ public class EventRepoImpl extends DbInitialize implements EventRepo{
 
 
         System.out.println("PDF Created Successfully ");
+    }
+
+    @Override
+    public boolean isEventFull(int eventId) {
+        try{
+            stmt = con.prepareStatement("select capacity from event where event_id=?");
+            stmt.setInt(1,eventId);
+
+            rs = stmt.executeQuery();
+
+            if(rs.next()){
+
+               return  rs.getInt(1) < 0;
+            }
+
+
+           return true;
+        }catch (Exception e){
+            System.out.println(e);
+            return false;
+        }
+    }
+
+    @Override
+    public int getCapacities(int eventId) {
+        int capacity = 0;
+        try {
+
+            stmt = con.prepareStatement("select capacity from event where event_id=?");
+            stmt.setInt(1,eventId);
+            rs = stmt.executeQuery();
+            if (rs.next()) {
+                capacity = rs.getInt(1);
+
+                return capacity;
+            }
+
+        } catch (Exception e) {
+            System.out.println(e);
+
+        }
+        return capacity;
     }
 }

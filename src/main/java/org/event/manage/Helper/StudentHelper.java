@@ -10,8 +10,9 @@ import java.util.Scanner;
 public class StudentHelper {
 
     static public void startWorking(){
-        do {
+
             Scanner sc = new Scanner(System.in);
+            System.out.println("*************************Student Services ************************************");
             System.out.println("1. Add Student ");
             System.out.println("2. View ALL Student");
             System.out.println("3. Delete Student By ID");
@@ -116,10 +117,14 @@ public class StudentHelper {
                     ServiceHelper.studentService.exportsStudentToPDF(listDownload,"C:\\Users\\ACER\\Desktop\\student.pdf");
 
                     break;
+
+                case 8:
+
+
                 default:
                     System.out.println("Invalid choice");
 
             }
-        }while (true);
+
     }
 }

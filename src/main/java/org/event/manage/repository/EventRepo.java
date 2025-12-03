@@ -13,5 +13,7 @@ public interface EventRepo {
     public boolean DeleteEvent(int id);
     public boolean UpdateEvent(EventModel eventModel);
     public void exportsUsersToPDF(List<EventModel> userList,String path);
+    public boolean isEventFull(int eventId);
+    public int getCapacities(int eventId);
 
 }
