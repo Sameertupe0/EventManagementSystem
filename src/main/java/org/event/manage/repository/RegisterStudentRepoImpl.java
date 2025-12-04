@@ -69,7 +69,7 @@ public class RegisterStudentRepoImpl extends DbInitialize implements RegStudentR
     public List<Object[]> getRegistrationEventWise() {
 
         try{
-
+            list.clear();
             stmt = con.prepareStatement("select e.name as event_name, s.name as student_name from registration r inner join student s on r.student_id = s.student_id inner join event e on r.event_id = e.event_id order by e.name ");
             rs = stmt.executeQuery();
             ResultSetMetaData resultSetMetaData = rs.getMetaData();
@@ -97,7 +97,7 @@ public class RegisterStudentRepoImpl extends DbInitialize implements RegStudentR
     @Override
     public List<Object[]> getRegistrationStudentWise() {
         try{
-
+            list.clear();
             stmt = con.prepareStatement("select s.name as student_name,e.name as event_name from registration r inner join student s on r.student_id = s.student_id inner join event e on r.event_id = e.event_id order by s.name ");
             rs = stmt.executeQuery();
             ResultSetMetaData resultSetMetaData = rs.getMetaData();
@@ -208,7 +208,7 @@ public class RegisterStudentRepoImpl extends DbInitialize implements RegStudentR
 
             PdfWriter.getInstance(document,new FileOutputStream(path));
             document.open();
-            PdfPTable table = new PdfPTable(obj.get(0).length);
+            PdfPTable table = new PdfPTable(2);
 
             Font titleFont = new Font(Font.FontFamily.HELVETICA, 18, Font.BOLD);
             Paragraph title = new Paragraph("Student List", titleFont);
@@ -224,9 +224,9 @@ public class RegisterStudentRepoImpl extends DbInitialize implements RegStudentR
 
 
             for(Object[]row :obj){
-                for(Object cols:row){
-                    table.addCell(cols.toString());
-                }
+                table.addCell(row[0].toString());
+                table.addCell(row[1].toString());
+
             }
 
 

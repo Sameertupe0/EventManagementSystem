@@ -108,8 +108,11 @@ public class RegHelper {
 
                     case 7:
                         System.out.println("Registration Report in pdf are stored in your desktop");
-                        List<Object[]> objs = ServiceHelper.regHelper.getRegistrationEventWise();
-                        ServiceHelper.regHelper.exportsStudentToPDF(objs,"C:\\Users\\ACER\\Desktop\\registration.pdf");
+                        List<Object[]> obs = ServiceHelper.regHelper.getRegistrationEventWise();
+                        for(Object[] o:obs){
+                            System.out.println(Arrays.toString(o));
+                        }
+                        ServiceHelper.regHelper.exportsStudentToPDF(obs,"C:\\Users\\ACER\\Desktop\\registration.pdf");
 
 
 
